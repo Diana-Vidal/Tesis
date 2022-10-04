@@ -1,27 +1,27 @@
 {
-    "id": "C5FFAEDB",
-    "path": "~/GitHub/Tesis/Mortalidad_mapas.R",
-    "project_path": "Mortalidad_mapas.R",
+    "id": "686970CC",
+    "path": "~/GitHub/Tesis/Tasa_mortalidad.R",
+    "project_path": "Tasa_mortalidad.R",
     "type": "r_source",
-    "hash": "2307469647",
+    "hash": "1677257579",
     "contents": "",
     "dirty": false,
-    "created": 1664146440149.0,
+    "created": 1664500320214.0,
     "source_on_save": false,
-    "relative_order": 1,
+    "relative_order": 4,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "18,0",
-        "scrollLine": "10"
+        "cursorPosition": "45,0",
+        "scrollLine": "28"
     },
     "folds": "",
-    "lastKnownWriteTime": 1664157155,
+    "lastKnownWriteTime": 1664511534,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1664157155450,
+    "last_content_update": 1664511534776,
     "read_only": false,
     "read_only_alternatives": []
 }
