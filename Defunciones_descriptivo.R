@@ -316,10 +316,6 @@ sd(COVID2021$EDAD)
 
 #### ZMVM ####
 
-zonas <- 
-  
-drop(def_zmvm)
-  
 def_zmvm <- rbind(COVID2020, COVID2021) %>%
   select(FECHA_DEF, AÑO, ENTIDAD_RES, MUNICIPIO, SEXO, EDAD, GRUPO_EDAD, DIABETES, EPOC, ASMA, HIPERTENSION,
          CARDIOVASCULAR, OBESIDAD, RENAL_CRONICA) %>% 
