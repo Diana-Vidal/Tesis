@@ -5,7 +5,7 @@ library(tidyverse)
 #Creamos vector con variables a utilizar de Datos Abiertos
 variables <- c("ID_REGISTRO", "ENTIDAD_UM", "FECHA_DEF", "CLASIFICACION_FINAL")
 
-##### CALCULO DE MORTALIDAD JUNTANDO 2020 Y 2021 ####
+##### CALCULO DE MORTALIDAD 2020 Y 2021 ####
 
 #Cargamos la base de COVID-19 Datos Abiertos 2020
 COVID2020 <- fread("Bases/Datos abiertos/COVID19MEXICO2020.csv",
