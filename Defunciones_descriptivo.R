@@ -316,11 +316,33 @@ sd(COVID2021$EDAD)
 
 #### ZMVM ####
 
+#Cargamos base con zonas geograficas de la ZMVM
+zonas <- fread("Bases/Zonas_ZMVM.csv")
+
+pob_zmvm <- fread("Bases/Municipios_ZMVM_Pob.csv") %>% 
+  select(-2)
+
+#Unimos las bases de defunciones de COVID-19 del 2020 y 2021
+#Seleccionamos las variables a utilizar
+#Seleccionamos las defunciones de la CDMX y el EDOMEX
+#Creamos columna con los nombres de los municipios sin acentos
+#Unimos la base de zonas geograficas de acuerdo a Entidad y Municipio
+#Eliminamos los Municipios que no pertenecen a la ZMVM (los que quedaron con NA)
 def_zmvm <- rbind(COVID2020, COVID2021) %>%
   select(FECHA_DEF, AÑO, ENTIDAD_RES, MUNICIPIO, SEXO, EDAD, GRUPO_EDAD, DIABETES, EPOC, ASMA, HIPERTENSION,
          CARDIOVASCULAR, OBESIDAD, RENAL_CRONICA) %>% 
   filter(ENTIDAD_RES %in% c("CIUDAD DE MEXICO", "MEXICO")) %>% 
-  mutate(MUNICIPIO_RES = chartr("ÁÉÍÓÚ", "AEIOU", MUNICIPIO))
+  mutate(MUNICIPIO_RES = chartr("ÁÉÍÓÚ", "AEIOU", MUNICIPIO)) %>% 
+  left_join(., zonas, by = c("ENTIDAD_RES" = "ENTIDAD",
+                             "MUNICIPIO_RES" = "MUNICIPIO")) %>% 
+  drop_na(ZONA) %>% 
+  left_join(., pob_zmvm, by = c("MUNICIPIO_RES" = "MUNICIPIO",
+                                "AÑO" = "AÑO")) %>% 
+  select(-4)
 
 
+#Valores unicos de Municipio
+unique(def_zmvm$MUNICIPIO_RES)
 
+#Valores unicos de Zona
+unique(def_zmvm$ZONA)
