@@ -340,6 +340,15 @@ def_zmvm <- rbind(COVID2020, COVID2021) %>%
                                 "AÑO" = "AÑO")) %>% 
   select(-4)
 
+write.csv(def_zmvm, "Bases/def_zmvm.csv",
+          row.names = F,
+          fileEncoding = "ISO-8859-1")
+
+
+write.csv(CONAPO2020_2021,"Bases/CONAPO/CONAPO.csv",
+          row.names = F,
+          fileEncoding = "ISO-8859-1")
+
 
 #Valores unicos de Municipio
 unique(def_zmvm$MUNICIPIO_RES)
