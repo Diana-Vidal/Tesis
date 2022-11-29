@@ -4,7 +4,6 @@
 #Paso 1 Carga de librerías
 library(tidyverse)
 library(data.table)
-library(aweek)
 library(raster)
 library(stringi)
 library(leaflet)

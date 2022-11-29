@@ -140,8 +140,8 @@ COVID2020 <- fread("Bases/Datos abiertos/COVID19MEXICO2020.csv",
 summary(COVID2020)
 
 ## Categoricas
-table(COVID2020$DIABETES)
-prop.table(table(COVID2020$DIABETES))
+table(def_zmvm$DIABETES)
+prop.table(table(def_zmvm$DIABETES))
 
 table(COVID2020$EPOC)
 prop.table(table(COVID2020$EPOC))
@@ -344,10 +344,7 @@ write.csv(def_zmvm, "Bases/def_zmvm.csv",
           row.names = F,
           fileEncoding = "ISO-8859-1")
 
-
-write.csv(CONAPO2020_2021,"Bases/CONAPO/CONAPO.csv",
-          row.names = F,
-          fileEncoding = "ISO-8859-1")
+def_zmvm <- fread("Bases/def_zmvm.csv", encoding = "Latin-1")
 
 
 #Valores unicos de Municipio

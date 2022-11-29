@@ -29,6 +29,9 @@ pm <- rbind(pm2019,pm2020, pm2021) %>%
   mutate(fecha = as.Date(fecha, format = "%Y-%m-%d")) %>%
   select(fecha,nom_estac, id_station, value, longitud, latitud, municipio, entidad, zona)
 
+write.csv(pm, "Bases/pm.csv",
+          row.names = F,
+          fileEncoding = "ISO-8859-1")
 
 head(pm)
 unique(pm$zona)
