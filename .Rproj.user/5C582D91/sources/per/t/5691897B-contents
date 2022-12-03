@@ -1,34 +1,35 @@
+##### MAPA DE MORTALIDAD POR COVID-19 EN MEXICO #####
 
-##### MORTALIDAD DE COVID-19 EN LAS REGIONES DE MEXICO #####
-
-#Paso 1 Carga de librerías
+# Carga de librerías
 library(tidyverse)
 library(data.table)
 library(raster)
 library(stringi)
 library(leaflet)
 
+# Cargamos base de tasas de mortalidad crudas y ajustadas y filtramos por 2020.
 mortalidad2020 <- mortalidad_aj %>% 
   filter(AÑO == 2020)
 
+# Cargamos base de tasas de mortalidad crudas y ajustadas y filtramos por 2020.
 mortalidad2021 <- mortalidad_aj %>% 
   filter(AÑO == 2021)
 
-#Paso 3: Limpieza de la infomación de los mapas
+# Cargamos datos para creacion del mapa
+# Limpieza de la infomación de los mapas
 MX <- getData("GADM", country = "MX", level = 1)
 MX@data$NAME_1 <- toupper(MX@data$NAME_1)
 # MX@data$NAME_1 <- stri_trans_general(MX@data$NAME_1, "Latin-ASCII")
 MX@data$NAME_1[which(MX@data$NAME_1%in% c("Distrito Federal"))]<- "Ciudad de México"
 
-### CAmbiar incidencia_Entidad por el de mortalidad
+# Unimos los datos para el mapa con los datos de tasa de mortalidad 2020
 MX@data <- left_join(MX@data, mortalidad2020, by = c("NAME_1"= "NOM_ENT"))
 
-
-#Valores numéricos
+# Valores numéricos
 color_num <- colorNumeric(palette = "RdBu",
                           domain = mortalidad2020$TASA_AJUSTADA, reverse = T)
 
-
+# Creamos mapa de tasas de mortalidad ajustadas del 2020 por COVID-19
 leaflet() %>%
   addProviderTiles(provider = "CartoDB.PositronNoLabels") %>%
   addPolygons(data = MX ,

@@ -1,27 +1,28 @@
-#### ANALISIS DESCRIPTIVO: DEFUNCIONES POR COVID-19 ####
+#### LIMPIEZA DE BASES PAEA DEFUNCIONES POR COVID-19 ####
 
-#Cargamos librerias
+# Cargamos librerias
 library(data.table)
 library(tidyverse)
 
 
-#Creamos vector con variables a utilizar de Datos Abiertos
+# Creamos vector con variables a utilizar de Datos Abiertos
 variables <- c("ID_REGISTRO", "SEXO", "ENTIDAD_RES", "MUNICIPIO_RES","FECHA_DEF", "EDAD",
                "DIABETES", "EPOC", "ASMA", "HIPERTENSION", "CARDIOVASCULAR", "OBESIDAD", "RENAL_CRONICA",
                "CLASIFICACION_FINAL")
 
-#Cargamos catalogo de municipios que vamos a utilzar para obtener nombres
+# Cargamos catalogo de municipios que vamos a utilzar para obtener nombres
 catalogo_municipios <- fread("Bases/Catalogo_Municipios.csv")
 
 
 #### 2020 ####
 
-#Cargamos la base de COVID-19 Datos Abiertos 2020
-#Modificamos el formato de fecha
-#Renombramos las variables
-#Creamos variable de grupo de edad
-#Filtramos Clasificacion final por confirmados a COVID-19
-#Unimos base con el catalogo de municipios
+# Cargamos la base de COVID-19 Datos Abiertos 2020
+# Modificamos el formato de fecha
+# Renombramos las variables
+# Creamos variable de grupo de edad
+# Filtramos Clasificacion final por confirmados a COVID-19
+# Unimos base con el catalogo de municipios
+# Creamos factores las variables cualitativas
 COVID2020 <- fread("Bases/Datos abiertos/COVID19MEXICO2020.csv",
                    select = variables) %>% 
   mutate(FECHA_DEF = as.Date(FECHA_DEF,format = "%Y-%m-%d"),
@@ -134,44 +135,17 @@ COVID2020 <- fread("Bases/Datos abiertos/COVID19MEXICO2020.csv",
          CARDIOVASCULAR = as.factor(CARDIOVASCULAR),
          OBESIDAD = as.factor(OBESIDAD),
          RENAL_CRONICA = as.factor(RENAL_CRONICA))
-  
 
-# Estadisticas descriptivas
-summary(COVID2020)
-
-## Categoricas
-table(def_zmvm$DIABETES)
-prop.table(table(def_zmvm$DIABETES))
-
-table(COVID2020$EPOC)
-prop.table(table(COVID2020$EPOC))
-
-table(COVID2020$ASMA)
-prop.table(table(COVID2020$ASMA))
-
-table(COVID2020$HIPERTENSION)
-prop.table(table(COVID2020$HIPERTENSION))
-
-table(COVID2020$CARDIOVASCULAR)
-prop.table(table(COVID2020$CARDIOVASCULAR))
-
-table(COVID2020$OBESIDAD)
-prop.table(table(COVID2020$OBESIDAD))
-
-table(COVID2020$RENAL_CRONICA)
-prop.table(table(COVID2020$RENAL_CRONICA))
-
-## Continuas
-sd(COVID2020$EDAD)
 
 #### 2021 ####
 
-#Cargamos la base de COVID-19 Datos Abiertos 2020
-#Modificamos el formato de fecha
-#Renombramos las variables
-#Creamos variable de grupo de edad
-#Filtramos Clasificacion final por confirmados a COVID-19
-#Unimos base con el catalogo de municipios
+# Cargamos la base de COVID-19 Datos Abiertos 2021
+# Modificamos el formato de fecha
+# Renombramos las variables
+# Creamos variable de grupo de edad
+# Filtramos Clasificacion final por confirmados a COVID-19
+# Unimos base con el catalogo de municipios
+# Creamos factores las variables cualitativas
 COVID2021 <- fread("Bases/Datos abiertos/COVID19MEXICO2021.csv",
                    select = variables) %>% 
   mutate(FECHA_DEF = as.Date(FECHA_DEF,format = "%Y-%m-%d"),
@@ -286,53 +260,42 @@ COVID2021 <- fread("Bases/Datos abiertos/COVID19MEXICO2021.csv",
          OBESIDAD = as.factor(OBESIDAD),
          RENAL_CRONICA = as.factor(RENAL_CRONICA))
 
-# Estadisticas descriptivas
-summary(COVID2021)
 
-## Categoricas
-table(COVID2021$DIABETES)
-prop.table(table(COVID2021$DIABETES))
+#### DEFUNCIONES DE ZMVM EN 2020 Y 2021 ####
 
-table(COVID2021$EPOC)
-prop.table(table(COVID2021$EPOC))
-
-table(COVID2021$ASMA)
-prop.table(table(COVID2021$ASMA))
-
-table(COVID2021$HIPERTENSION)
-prop.table(table(COVID2021$HIPERTENSION))
-
-table(COVID2021$CARDIOVASCULAR)
-prop.table(table(COVID2021$CARDIOVASCULAR))
-
-table(COVID2021$OBESIDAD)
-prop.table(table(COVID2021$OBESIDAD))
-
-table(COVID2021$RENAL_CRONICA)
-prop.table(table(COVID2021$RENAL_CRONICA))
-
-## Continuas
-sd(COVID2021$EDAD)
-
-#### ZMVM ####
-
-#Cargamos base con zonas geograficas de la ZMVM
+# Cargamos base con zonas geograficas de la ZMVM
 zonas <- fread("Bases/Zonas_ZMVM.csv")
 
+# Cargamos base con población por alcaldía/municipio y por año
 pob_zmvm <- fread("Bases/Municipios_ZMVM_Pob.csv") %>% 
   select(-2)
 
-#Unimos las bases de defunciones de COVID-19 del 2020 y 2021
-#Seleccionamos las variables a utilizar
-#Seleccionamos las defunciones de la CDMX y el EDOMEX
-#Creamos columna con los nombres de los municipios sin acentos
-#Unimos la base de zonas geograficas de acuerdo a Entidad y Municipio
-#Eliminamos los Municipios que no pertenecen a la ZMVM (los que quedaron con NA)
+# Unimos las bases de defunciones de COVID-19 del 2020 y 2021
+# Seleccionamos las variables a utilizar
+# Filtramos las defunciones de la CDMX y el EDOMEX
+# Creamos columna con los nombres de los municipios sin acentos
+# Unimos la base de zonas geograficas de acuerdo a Entidad y Municipio
+# Eliminamos los Municipios que no pertenecen a la ZMVM (los que quedaron con NA)
+# Unimos la base de poblaciones por alcaldia/municipio
 def_zmvm <- rbind(COVID2020, COVID2021) %>%
   select(FECHA_DEF, AÑO, ENTIDAD_RES, MUNICIPIO, SEXO, EDAD, GRUPO_EDAD, DIABETES, EPOC, ASMA, HIPERTENSION,
          CARDIOVASCULAR, OBESIDAD, RENAL_CRONICA) %>% 
   filter(ENTIDAD_RES %in% c("CIUDAD DE MEXICO", "MEXICO")) %>% 
-  mutate(MUNICIPIO_RES = chartr("ÁÉÍÓÚ", "AEIOU", MUNICIPIO)) %>% 
+  mutate(MUNICIPIO_RES = chartr("ÁÉÍÓÚ", "AEIOU", MUNICIPIO),
+         GRUPO_EDAD = factor(GRUPO_EDAD, levels = c("0 - 4",
+                                                    "5 - 9",
+                                                    "10 - 14",
+                                                    "15 - 19",
+                                                    "20 - 24",
+                                                    "25 - 29",
+                                                    "30 - 34",
+                                                    "35 - 39",
+                                                    "40 - 44",
+                                                    "45 - 49",
+                                                    "50 - 54",
+                                                    "55 - 59",
+                                                    "60 - 64",
+                                                    "65 o más"))) %>% 
   left_join(., zonas, by = c("ENTIDAD_RES" = "ENTIDAD",
                              "MUNICIPIO_RES" = "MUNICIPIO")) %>% 
   drop_na(ZONA) %>% 
@@ -340,15 +303,8 @@ def_zmvm <- rbind(COVID2020, COVID2021) %>%
                                 "AÑO" = "AÑO")) %>% 
   select(-4)
 
+# Guardamos como csv la base creada
 write.csv(def_zmvm, "Bases/def_zmvm.csv",
           row.names = F,
           fileEncoding = "ISO-8859-1")
 
-def_zmvm <- fread("Bases/def_zmvm.csv", encoding = "Latin-1")
-
-
-#Valores unicos de Municipio
-unique(def_zmvm$MUNICIPIO_RES)
-
-#Valores unicos de Zona
-unique(def_zmvm$ZONA)
