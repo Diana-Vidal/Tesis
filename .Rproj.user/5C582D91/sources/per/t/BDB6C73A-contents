@@ -90,41 +90,5 @@ write.csv(mort_mun, "Bases/mort_mun.csv",
           row.names = F,
           fileEncoding = "ISO-8859-1")
 
-# Cargamos los datos para crear el mapa
-MX <- getData("GADM", country = "MX", level = 2)
-
-MX@data$NAME_1[which(MX@data$NAME_1%in% c("Distrito Federal"))]<- "Ciudad de México"
-MX@data$NAME_1 <- toupper(MX@data$NAME_1)
-MX@data$NAME_1 <- stri_trans_general(MX@data$NAME_1, "Latin-ASCII")
-MX@data$NAME_2 <- toupper(MX@data$NAME_2)
-MX@data$NAME_2 <- stri_trans_general(MX@data$NAME_2, "Latin-ASCII")
-
-MX@data <- MX@data %>% 
-  filter(NAME_1 %in% c("CIUDAD DE MEXICO", "MEXICO"))
-
-MX@data <- left_join(MX@data, mort_mun,
-                     by = c("NAME_1" = "ENTIDAD_RES"
-                            ,"NAME_2"= "MUNICIPIO_RES")) %>% 
-  filter(!is.na(ZONA))
-
-#Valores numéricos
-color_num <- colorNumeric(palette = "RdBu",
-                          domain = mort_mun$TASA_AJUSTADA, reverse = T)
-
-
-# Hacemos mapa por municipios
-leaflet() %>%
-  addProviderTiles(provider = "CartoDB.PositronNoLabels") %>%
-  addPolygons(data = MX@data,
-              fillColor  = ~color_num(mort_mun$TASA_AJUSTADA),
-              color = "black",
-              weight = 1,
-              label = paste0(MX$NAME_2, ": ", round(mort_mun$TASA_AJUSTADA,0) ),
-              smoothFactor = 0.5,
-              opacity = 1.0,
-              fillOpacity = 0.5) %>%
-  addLegend(data = MX, position = "topright", pal = color_num, values = ~mort_mun$TASA_AJUSTADA,
-            bins = seq(0,400, by =50), #Aqui modificar el valor mínimo al maximo por x
-            title = "Mortalidad por COVID-19 durante 2020")
 
 

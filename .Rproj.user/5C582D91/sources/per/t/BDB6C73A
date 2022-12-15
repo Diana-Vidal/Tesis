@@ -3,7 +3,7 @@
     "path": "~/GitHub/Tesis/Tasas_mortalidad.R",
     "project_path": "Tasas_mortalidad.R",
     "type": "r_source",
-    "hash": "3360486451",
+    "hash": "687303058",
     "contents": "",
     "dirty": false,
     "created": 1669948293899.0,
@@ -13,14 +13,14 @@
         "source_window_id": "",
         "Source": "Source",
         "cursorPosition": "92,0",
-        "scrollLine": "84"
+        "scrollLine": "76"
     },
     "folds": "9|51|74|0|\n",
-    "lastKnownWriteTime": 1669950109,
+    "lastKnownWriteTime": 1671073341,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1669950119503,
+    "last_content_update": 1671073341103,
     "read_only": false,
     "read_only_alternatives": []
 }

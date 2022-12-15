@@ -3,7 +3,7 @@
     "path": "~/GitHub/Tesis/Mapa_tasas_mortalidad.R",
     "project_path": "Mapa_tasas_mortalidad.R",
     "type": "r_source",
-    "hash": "1510294687",
+    "hash": "3120680743",
     "contents": "",
     "dirty": false,
     "created": 1669948298802.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "0,10",
-        "scrollLine": "0"
+        "cursorPosition": "49,0",
+        "scrollLine": "43"
     },
-    "folds": "",
-    "lastKnownWriteTime": 1669961243,
+    "folds": "9|36|47|0|\n",
+    "lastKnownWriteTime": 1671073343,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1669961243145,
+    "last_content_update": 1671073350169,
     "read_only": false,
     "read_only_alternatives": []
 }
