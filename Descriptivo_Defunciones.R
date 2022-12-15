@@ -7,8 +7,7 @@ library(tidyverse)
 # Cargamos la base de defunciones
 def_zmvm <- fread("Bases/def_zmvm.csv", encoding = "Latin-1")
 
-view(def_zmvm)
-head(def_zmvm)
+mort_mun <- fread("Bases/mort_mun.csv", encoding = "Latin-1")
 
 # Valores unicos de Municipio
 unique(def_zmvm$MUNICIPIO_RES)
@@ -51,7 +50,7 @@ prop.table(table(def_zmvm$RENAL_CRONICA))
 ## Continuas
 sd(def_zmvm$EDAD)
 
-##### GRAFICOS ####
+#### GRAFICOS ####
 
 # Defunciones por zona geografica en ZMVM
 def_zmvm %>% 
@@ -76,4 +75,32 @@ def_zmvm %>%
   geom_bar(aes(y = GRUPO_EDAD, x = ..count.., fill = SEXO), position = "fill")+
   facet_wrap(~ZONA, scales = "free")
 
-hist(def_zmvm$EDAD)
+# Defunciones por grupo de edad y comorbilidad y zona
+GRUPO_EDAD_ord <- c("0 - 4",
+                    "5 - 9",
+                    "10 - 14",
+                    "15 - 19",
+                    "20 - 24",
+                    "25 - 29",
+                    "30 - 34",
+                    "35 - 39",
+                    "40 - 44",
+                    "45 - 49",
+                    "50 - 54",
+                    "55 - 59",
+                    "60 - 64",
+                    "65 o más")
+
+def_zmvm %>% 
+  select(SEXO, GRUPO_EDAD, ZONA, DIABETES, EPOC, ASMA, HIPERTENSION, CARDIOVASCULAR, OBESIDAD, RENAL_CRONICA) %>% 
+  gather(.,COMORBILIDAD,COM_VALOR,4:10) %>%
+  filter(COM_VALOR == "SI") %>% 
+  group_by(ZONA,GRUPO_EDAD,COMORBILIDAD) %>% 
+  summarise(DEF = n()) %>% 
+  ggplot()+
+  geom_bar(aes(x = DEF, y = factor(GRUPO_EDAD, levels = GRUPO_EDAD_ord), fill = COMORBILIDAD), position = "fill", stat = "identity")+
+  facet_wrap(~ZONA, scales = "free")
+  
+
+  
+
