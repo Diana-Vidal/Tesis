@@ -308,3 +308,26 @@ write.csv(def_zmvm, "Bases/def_zmvm.csv",
           row.names = F,
           fileEncoding = "ISO-8859-1")
 
+#### CREAMOS BASE PARA EMPATAR PARA REGRESION DE POISSON ####
+
+def_zmvm <- fread("Bases/def_zmvm.csv",
+                  encoding = "Latin-1")
+
+# Agrupamos por municipio
+def_mun <- def_zmvm %>% 
+  group_by(FECHA_DEF, MUNICIPIO_RES, ZONA) %>% 
+  summarise(num_def = n())%>% 
+  rename(fecha = FECHA_DEF,
+         municipio = MUNICIPIO_RES,
+         zona = ZONA)
+
+
+# Agrupamos por zona
+def_zona <- def_zmvm %>% 
+  group_by(FECHA_DEF, ZONA) %>% 
+  summarise(num_def = n())%>% 
+  rename(fecha = FECHA_DEF,
+         zona = ZONA)
+
+
+

@@ -1,27 +1,27 @@
 {
-    "id": "38CBEA03",
-    "path": "~/GitHub/Tesis/Base_PM.R",
-    "project_path": "Base_PM.R",
+    "id": "4B4A11CB",
+    "path": "~/GitHub/Tesis/Base_Regresion.R",
+    "project_path": "Base_Regresion.R",
     "type": "r_source",
-    "hash": "952063976",
+    "hash": "357117543",
     "contents": "",
     "dirty": false,
-    "created": 1671073379024.0,
+    "created": 1676003238410.0,
     "source_on_save": false,
-    "relative_order": 6,
+    "relative_order": 10,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "44,0",
-        "scrollLine": "36"
+        "cursorPosition": "54,0",
+        "scrollLine": "43"
     },
     "folds": "",
-    "lastKnownWriteTime": 1675990656,
+    "lastKnownWriteTime": 1677779881,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1675990656861,
+    "last_content_update": 1677779881518,
     "read_only": false,
     "read_only_alternatives": []
 }

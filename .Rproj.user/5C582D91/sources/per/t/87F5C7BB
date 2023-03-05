@@ -1,27 +1,27 @@
 {
-    "id": "38CBEA03",
-    "path": "~/GitHub/Tesis/Base_PM.R",
-    "project_path": "Base_PM.R",
+    "id": "87F5C7BB",
+    "path": "~/GitHub/Tesis/Descriptivo_PM.R",
+    "project_path": "Descriptivo_PM.R",
     "type": "r_source",
-    "hash": "952063976",
+    "hash": "416330374",
     "contents": "",
     "dirty": false,
-    "created": 1671073379024.0,
+    "created": 1674790126091.0,
     "source_on_save": false,
-    "relative_order": 6,
+    "relative_order": 7,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "44,0",
-        "scrollLine": "36"
+        "cursorPosition": "13,0",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1675990656,
+    "lastKnownWriteTime": 1677649904,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1675990656861,
+    "last_content_update": 1677649904534,
     "read_only": false,
     "read_only_alternatives": []
 }

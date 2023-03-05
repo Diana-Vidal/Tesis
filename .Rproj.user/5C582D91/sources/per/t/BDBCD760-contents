@@ -52,6 +52,11 @@ sd(def_zmvm$EDAD)
 
 #### GRAFICOS ####
 
+# Defunciones por grupo de edad
+def_zmvm %>% 
+  ggplot()+
+  geom_bar(aes(x = GRUPO_EDAD, y = ..count.., fill = GRUPO_EDAD), position = "dodge")
+
 # Defunciones por zona geografica en ZMVM
 def_zmvm %>% 
   ggplot()+

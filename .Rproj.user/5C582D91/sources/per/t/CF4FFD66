@@ -1,27 +1,27 @@
 {
-    "id": "38CBEA03",
-    "path": "~/GitHub/Tesis/Base_PM.R",
-    "project_path": "Base_PM.R",
+    "id": "CF4FFD66",
+    "path": "~/GitHub/Tesis/Serie_tiempo_PM.R",
+    "project_path": "Serie_tiempo_PM.R",
     "type": "r_source",
-    "hash": "952063976",
+    "hash": "3833350031",
     "contents": "",
     "dirty": false,
-    "created": 1671073379024.0,
+    "created": 1675393399928.0,
     "source_on_save": false,
-    "relative_order": 6,
+    "relative_order": 9,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "44,0",
-        "scrollLine": "36"
+        "cursorPosition": "141,46",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1675990656,
+    "lastKnownWriteTime": 1677789609,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1675990656861,
+    "last_content_update": 1677789609366,
     "read_only": false,
     "read_only_alternatives": []
 }
