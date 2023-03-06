@@ -3,7 +3,7 @@
     "path": "~/GitHub/Tesis/Descriptivo_Defunciones.R",
     "project_path": "Descriptivo_Defunciones.R",
     "type": "r_source",
-    "hash": "3707262401",
+    "hash": "3509649036",
     "contents": "",
     "dirty": false,
     "created": 1669948310222.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "7,61",
-        "scrollLine": "0"
+        "cursorPosition": "144,2",
+        "scrollLine": "137"
     },
     "folds": "",
-    "lastKnownWriteTime": 1677649902,
+    "lastKnownWriteTime": 1678068353,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1677649902896,
+    "last_content_update": 1678068353036,
     "read_only": false,
     "read_only_alternatives": []
 }

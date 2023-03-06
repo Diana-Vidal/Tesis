@@ -6,6 +6,9 @@ library(raster)
 library(stringi)
 library(leaflet)
 
+# Cargar base de tasa de mortalidad por municipio por COVID-19 para 2020 y 2021
+mort_mun <- fread("Bases/mort_mun.csv", encoding = "Latin-1")
+
 #### MAPA DE MORTALIDAD POR MUNICIPIO DE LA ZMVM DURANTE 2020 ####
 
 # Cargamos base de mortalidad por municipio filtrada para 2020 

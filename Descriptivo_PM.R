@@ -11,6 +11,7 @@ pm <- fread("Bases/pm.csv",
             encoding = "Latin-1") %>% 
   filter(!is.na(zona))
 
+
 # Valores unicos de estacion
 unique(pm$nom_estac)
 
@@ -42,43 +43,49 @@ hist(pm$value)
 
 # Grafico de lineas de concentraciones 2019, 2020 y 2021
 pm %>% 
-  ggplot()+
+  ggplot() +
   geom_line(aes(x = fecha, y = value))+
-  geom_smooth(aes(x = fecha, y = value))
+  geom_smooth(aes(x = fecha, y = value)) +
+  labs (title = "Gráfico n. Concentraciones promedio durante 24 h de PM2.5 en la ZMVM, durante el 2020 y 2021.",
+        caption = "Creación propia con datos obtenidos de base de datos abiertos del Sistema de Vigilancia de Enfermedades Respiratorias.",
+        x = "Fecha",
+        y = "Concentración promedio de 24 h de PM2.5")  +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.caption.position = "panel",
+        plot.caption = element_text(hjust = 0.5))
 
 
-# Grafico de lineas de concentraciones durante 2019
-pm %>%
-  filter(fecha >= "2019-01-01" & fecha <= "2019-12-31") %>%
-  ggplot()+
-  geom_line(aes(x = fecha, y = value))+
-  geom_smooth(aes(x = fecha, y = value))
-
-# Grafico de lineas de concentraciones durante 2020
-pm %>%
-  filter(fecha >= "2020-01-01" & fecha <= "2020-12-31") %>%
-  ggplot()+
-  geom_line(aes(x = fecha, y = value))+
-  geom_smooth(aes(x = fecha, y = value))
-
-# Grafico de lineas de concentraciones durante 2021
-pm %>%
-  filter(fecha >= "2021-01-01" & fecha <= "2021-12-31") %>%
-  ggplot()+
-  geom_line(aes(x = fecha, y = value))+
-  geom_smooth(aes(x = fecha, y = value))
+# # Grafico de lineas de concentraciones durante 2019
+# pm %>%
+#   filter(fecha >= "2019-01-01" & fecha <= "2019-12-31") %>%
+#   ggplot()+
+#   geom_line(aes(x = fecha, y = value))+
+#   geom_smooth(aes(x = fecha, y = value))
+# 
+# # Grafico de lineas de concentraciones durante 2020
+# pm %>%
+#   filter(fecha >= "2020-01-01" & fecha <= "2020-12-31") %>%
+#   ggplot()+
+#   geom_line(aes(x = fecha, y = value))+
+#   geom_smooth(aes(x = fecha, y = value))
+# 
+# # Grafico de lineas de concentraciones durante 2021
+# pm %>%
+#   filter(fecha >= "2021-01-01" & fecha <= "2021-12-31") %>%
+#   ggplot()+
+#   geom_line(aes(x = fecha, y = value))+
+#   geom_smooth(aes(x = fecha, y = value))
 
 # Boxplot de concentraciones por estacion en 2019
 pm %>% 
   filter(fecha >= "2019-01-01" & fecha <= "2019-12-31") %>% 
   ggplot() +
-  geom_boxplot(aes(x = cve_estac, y = value, fill = cve_estac)) +
+  geom_boxplot(aes(x = cve_estac, y = value, fill = zona)) +
   labs (title = "Concentraciones promedio en 24 h de PM2.5 por estación de la ZMVM durante 2019",
         caption = "Creacion propia con datos abiertos del SIMAT",
         x = "Estaciones",
-        y = "Concentracion promedio en 24 horas")
-+
-  facet_grid(zona~.)
+        y = "Concentracion promedio en 24 horas") 
+
 
 # Boxplot de concentraciones por estacion en 2020
 pm %>% 

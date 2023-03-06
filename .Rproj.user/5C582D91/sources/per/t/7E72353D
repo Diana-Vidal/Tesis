@@ -3,7 +3,7 @@
     "path": "~/GitHub/Tesis/Base_Defunciones_.R",
     "project_path": "Base_Defunciones_.R",
     "type": "r_source",
-    "hash": "3479285294",
+    "hash": "1102342170",
     "contents": "",
     "dirty": false,
     "created": 1669948306166.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "331,0",
-        "scrollLine": "0"
+        "cursorPosition": "315,0",
+        "scrollLine": "303"
     },
     "folds": "",
-    "lastKnownWriteTime": 1677789627,
+    "lastKnownWriteTime": 1678070876,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1677789627362,
+    "last_content_update": 1678070876364,
     "read_only": false,
     "read_only_alternatives": []
 }

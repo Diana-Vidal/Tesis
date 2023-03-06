@@ -6,7 +6,7 @@ library(tidyverse)
 
 
 # Creamos vector con variables a utilizar de Datos Abiertos
-variables <- c("ID_REGISTRO", "SEXO", "ENTIDAD_RES", "MUNICIPIO_RES","FECHA_DEF", "EDAD",
+variables <- c("ID_REGISTRO", "SEXO", "ENTIDAD_RES", "MUNICIPIO_RES","FECHA_SINTOMAS", "FECHA_DEF", "EDAD",
                "DIABETES", "EPOC", "ASMA", "HIPERTENSION", "CARDIOVASCULAR", "OBESIDAD", "RENAL_CRONICA",
                "CLASIFICACION_FINAL")
 
@@ -278,7 +278,7 @@ pob_zmvm <- fread("Bases/Municipios_ZMVM_Pob.csv") %>%
 # Eliminamos los Municipios que no pertenecen a la ZMVM (los que quedaron con NA)
 # Unimos la base de poblaciones por alcaldia/municipio
 def_zmvm <- rbind(COVID2020, COVID2021) %>%
-  select(FECHA_DEF, AÑO, ENTIDAD_RES, MUNICIPIO, SEXO, EDAD, GRUPO_EDAD, DIABETES, EPOC, ASMA, HIPERTENSION,
+  select(FECHA_DEF, FECHA_SINTOMAS, AÑO, ENTIDAD_RES, MUNICIPIO, SEXO, EDAD, GRUPO_EDAD, DIABETES, EPOC, ASMA, HIPERTENSION,
          CARDIOVASCULAR, OBESIDAD, RENAL_CRONICA) %>% 
   filter(ENTIDAD_RES %in% c("CIUDAD DE MEXICO", "MEXICO")) %>% 
   mutate(MUNICIPIO_RES = chartr("ÁÉÍÓÚ", "AEIOU", MUNICIPIO),
@@ -301,17 +301,19 @@ def_zmvm <- rbind(COVID2020, COVID2021) %>%
   drop_na(ZONA) %>% 
   left_join(., pob_zmvm, by = c("MUNICIPIO_RES" = "MUNICIPIO",
                                 "AÑO" = "AÑO")) %>% 
-  select(-4)
+  select(-5)
 
 # Guardamos como csv la base creada
 write.csv(def_zmvm, "Bases/def_zmvm.csv",
           row.names = F,
           fileEncoding = "ISO-8859-1")
 
+
 #### CREAMOS BASE PARA EMPATAR PARA REGRESION DE POISSON ####
 
 def_zmvm <- fread("Bases/def_zmvm.csv",
                   encoding = "Latin-1")
+
 
 # Agrupamos por municipio
 def_mun <- def_zmvm %>% 

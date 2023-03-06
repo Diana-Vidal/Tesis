@@ -3,7 +3,7 @@
     "path": "~/GitHub/Tesis/MapaMortalidadZMVM.R",
     "project_path": "MapaMortalidadZMVM.R",
     "type": "r_source",
-    "hash": "3337846315",
+    "hash": "2860121168",
     "contents": "",
     "dirty": false,
     "created": 1673928373090.0,
@@ -12,16 +12,17 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "16,0",
-        "scrollLine": "3",
-        "docOutlineVisible": "1"
+        "cursorPosition": "11,0",
+        "scrollLine": "0",
+        "docOutlineVisible": "1",
+        "docOutlineSize": "22"
     },
-    "folds": "40|10|84|0|\n256|10|300|0|\n",
-    "lastKnownWriteTime": 1675827776,
+    "folds": "43|10|87|0|\n259|10|303|0|\n",
+    "lastKnownWriteTime": 1678057670,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1677640058977,
+    "last_content_update": 1678057670099,
     "read_only": false,
     "read_only_alternatives": []
 }
