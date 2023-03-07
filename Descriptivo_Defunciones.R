@@ -8,8 +8,7 @@ library(ggplot2)
 
 
 # Cargamos la base de defunciones
-def_zmvm <- fread("Bases/def_zmvm.csv",
-                  encoding = "Latin-1")
+def_zmvm <- fread("Bases/def_zmvm.csv", encoding = "Latin-1")
 
 # Valores unicos de Municipio
 unique(def_zmvm$MUNICIPIO_RES)
@@ -132,6 +131,22 @@ def_zmvm %>%
         plot.caption = element_text(hjust = 0.5))
 
 # Defunciones por grupo de edad y comorbilidad y zona
+
+#Cargamos base de mortalidad 
+mort_mun_gpoedad <- fread("Bases/mort_mun_gpoedad.csv",
+                              encoding = "Latin-1")
+
+comorb_gpo_edad <- left_join(def_zmvm, mort_mun_gpoedad,
+                             by = c("ENTIDAD_RES" = "ENTIDAD_RES",
+                                    "MUNICIPIO_RES" = "MUNICIPIO_RES",
+                                    "ZONA" = "ZONA",
+                                    "AÑO" = "AÑO",
+                                    "GRUPO_EDAD" = "GRUPO_EDAD")) %>% 
+  select(SEXO, GRUPO_EDAD, ZONA, DIABETES, EPOC, ASMA, HIPERTENSION, CARDIOVASCULAR, OBESIDAD, RENAL_CRONICA, TASA_MORTALIDAD) %>%
+  gather(., COMORBILIDAD, COM_VALOR, 4:6)
+  
+
+
 def_zmvm %>% 
   select(SEXO, GRUPO_EDAD, ZONA, DIABETES, EPOC, ASMA, HIPERTENSION, CARDIOVASCULAR, OBESIDAD, RENAL_CRONICA) %>% 
   gather(., COMORBILIDAD, COM_VALOR, 4:10) %>%
